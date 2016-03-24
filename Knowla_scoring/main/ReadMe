@@ -1,0 +1,5 @@
+Please run the program from main.run
+
+main.__init__ has the problem with its answer matrix and feedback dictionary,
+the grades could be changed in the grades triangle. for example (total score for problem is 14)
+this could be changed to 10 if the  __init__.problem_answer[0][2] is changed from 5 to 1.
