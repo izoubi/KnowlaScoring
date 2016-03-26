@@ -22,7 +22,7 @@ class TestGrading(unittest.TestCase):
                                [0,0,0,'-',1],
                                [0,0,0,0,'-']]
 
-        self.user_score, self.total_score = self.a.get_user_score(self.problem_answer)
+        self.user_score, self.total_score, self.score_percentage = self.a.get_user_score(self.problem_answer)
         self.notes = self.a.get_user_feedback()
 
     def test_user_answer_steps(self):
@@ -41,6 +41,7 @@ class TestGrading(unittest.TestCase):
     def test_user_score(self):
         self.assertEqual(7, self.user_score)
         self.assertEqual(10, self.total_score)
+        self.assertEqual(70, self.score_percentage)
 
     def test_user_feedback(self):
         self.assertEqual(['21', '43', '53'],self.notes)
