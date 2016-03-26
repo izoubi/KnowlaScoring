@@ -4,14 +4,18 @@ import random
 
 
 class GradingProblem:
-    def __init__(self, a_problem):
+    def __init__(self, a_problem, a_problem_answer, a_problem_cons_steps):
         self.problem = a_problem
+        self.correct_answer_matrix = a_problem_answer
+        self.consecutive_steps = a_problem_cons_steps
         self.problem_shuffled = self.problem.copy()
         self.user_input =[]  # user answer in numbers
         self.user_answer_steps = []  # user answer in steps same as problem steps
         self.accurate_user_input = []  # user answer in numbers (comparing his/her input_steps to the problem steps)
         self.user_answer_matrix =[[0 for x in range(len(self.problem))] for x in range(len(self.problem))]
         self.populate_user_answer_matrix_diagonal()
+        self.user_score, self.total_score, self.score_percentage = 0, 0, 0
+        self._where_notes = []
 
     def populate_user_answer_matrix_diagonal(self):
         for i in range(len(self.user_answer_matrix)):
@@ -66,31 +70,41 @@ class GradingProblem:
                     self.user_answer_matrix[key2-1][key1-1] = 0  # for grades triangle
                     self.user_answer_matrix[key1-1][key2-1] = 1  # for notes triangle
 
-    def get_user_score(self, a_correct_answer_matrix):
+    def get_user_score(self):
         # precondition : the user answer matrix is populated, and the correct answer matrix is received.
         # postcondition : user score and the total score are calculated
 
-        correct_answer_matrix = a_correct_answer_matrix
-        user_score, total_score = 0, 0
         for i in range(len(self.user_answer_matrix)):
             for j in range(i+1, len(self.user_answer_matrix[i])):
-                user_score += int(self.user_answer_matrix[i][j] * correct_answer_matrix[i][j])  # (returned user score)
+                self.user_score += int(self.user_answer_matrix[i][j] * self.correct_answer_matrix[i][j])  # (returned user score)
                 # multiply each element in the user answer matrix in grades triangle with the identical element in
                 # the correct answer matrix  grades triangle
-                total_score += int(correct_answer_matrix[i][j])  # returned total score
+                self.total_score += int(self.correct_answer_matrix[i][j])  # returned total score
 
-        return user_score, total_score
+        print("user answer before deduction if there is any", self.user_score) # this line would be deleted after
+        self.check_consecutive_steps()
+        self.score_percentage = int(self.user_score / self.total_score * 100)
+
+        return self.user_score, self.total_score, self.score_percentage
+
+    def check_consecutive_steps(self):
+        for a in self.consecutive_steps:
+            check = self.consecutive_steps[a]
+            if self.accurate_user_input.index(check[0]) < self.accurate_user_input.index(check[1]) and \
+                            self.accurate_user_input.index(check[2]) < self.accurate_user_input.index(check[3]):
+                self.user_score -= 1
+            else:
+                pass
 
     def get_user_feedback(self):
         # precondition : user answer matrix is populated
         # postcondition : where user had errors (notes) are returned.
-        _where_notes =[]
         for i in range(len(self.user_answer_matrix)):
             for j in range(i):  # loop through the notes triangle only.
                 if self.user_answer_matrix[i][j] == 1:
                     key = str(i+1)+str(j+1)  # append the accurate indexes of where the error is.
-                    _where_notes.append(key)
-        return _where_notes
+                    self._where_notes.append(key)
+        return self._where_notes
 
     @staticmethod
     def print_problem( to_print):
