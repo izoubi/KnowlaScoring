@@ -1,11 +1,11 @@
 __author__ = 'Ismail'
 
 problem = ['a', 'b', 'c', 'd', 'e']
-problem_answer = [['-',1,5,1,1],
-                 [0,'-',1,1,1],
-                 [0,0,'-',1,1],
-                 [0,0,0,'-',1],
-                 [0,0,0,0,'-']]
+problem_answer = [['-', 1, 1, 1, 1],
+                  [0, '-', 1, 1, 1],
+                  ['a', 'b', '-', 1, 1],
+                  [0, 0, 0, '-', 1],
+                  [0, 0, 0, 'c', '-']]
 
 problem_feedback = {'21': 'this is because you chose 2 before 1',
                     '31': 'this is because you chose 3 before 1',
@@ -18,3 +18,6 @@ problem_feedback = {'21': 'this is because you chose 2 before 1',
                     '53': 'this is because you chose 5 before 3',
                     '54': 'this is because you chose 5 before 4'}
 
+problem_consecutive_steps = {'a': [3, 1, 1, 4],
+                             'b': [3, 2, 2, 4],
+                             'c': [5, 4, 3, 5]}
