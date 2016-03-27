@@ -17,9 +17,9 @@ class TestGrading(unittest.TestCase):
                                   'b': [3, 2, 2, 4],
                                   'c': [5, 4, 3, 5]}
         self.a = GradingProblem(self.problem, self.problem_answer, self.consecutive_steps)
-        self.a.problem_shuffled = ['b', 'a', 'e', 'c', 'd']
+        self.a.problem_shuffled = ['a', 'c', 'b', 'e', 'd']
         self.user_solution_matrix = [[0 for x in range(len(self.problem))] for x in range(len(self.problem))]
-        self.a.user_input = [1, 2, 5, 3, 4]
+        self.a.user_input = [1, 2, 3, 4, 5]
         self.a.get_user_answer_steps()
         self.a.get_accurate_user_input()
         self.a.populate_user_answer_matrix_diagonal()
@@ -30,22 +30,22 @@ class TestGrading(unittest.TestCase):
         self.notes = self.a.get_user_feedback()
 
     def test_user_answer_steps(self):
-        self.assertEqual(['b', 'a', 'd', 'e', 'c'], self.a.user_answer_steps)
+        self.assertEqual(['a', 'c', 'b', 'e', 'd'], self.a.user_answer_steps)
 
     def test_accurate_user_input(self):
-        self.assertEqual([2, 1, 4, 5, 3], self.a.accurate_user_input)
+        self.assertEqual([1, 3, 2, 5, 4], self.a.accurate_user_input)
 
     def test_user_answer_matrix(self):
-        self.assertEqual([['-', 0, 1, 1, 1],
-                          [1, '-', 1, 1, 1],
-                          [0, 0, '-', 0, 0],
-                          [0, 0, 1, '-', 1],
-                          [0, 0, 1, 0, '-']], self.a.user_answer_matrix)
+        self.assertEqual([['-', 1, 1, 1, 1],
+                          [0, '-', 0, 1, 1],
+                          [0, 1, '-', 1, 1],
+                          [0, 0, 0, '-', 0],
+                          [0, 0, 0, 1, '-']], self.a.user_answer_matrix)
 
     def test_user_score(self):
-        self.assertEqual(7, self.user_score)
+        self.assertEqual(6, self.user_score)
         self.assertEqual(10, self.total_score)
-        self.assertEqual(70, self.score_percentage)
+        self.assertEqual(60, self.score_percentage)
 
     def test_user_feedback(self):
-        self.assertEqual(['21', '43', '53'], self.notes)
+        self.assertEqual(['32', '54'], self.notes)
