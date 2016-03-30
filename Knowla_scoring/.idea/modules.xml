@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../../Big Data/DonorsChoose_Visualization-master/.idea/DonorsChoose_Visualization-master.iml" filepath="$PROJECT_DIR$/../../../Big Data/DonorsChoose_Visualization-master/.idea/DonorsChoose_Visualization-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Knowla_scoring.iml" filepath="$PROJECT_DIR$/.idea/Knowla_scoring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Big Data/Term_Project/.idea/Term_Project.iml" filepath="$PROJECT_DIR$/../../../Big Data/Term_Project/.idea/Term_Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Big Data/node-dc-mongo-master/.idea/node-dc-mongo-master.iml" filepath="$PROJECT_DIR$/../../../Big Data/node-dc-mongo-master/.idea/node-dc-mongo-master.iml" />
     </modules>
   </component>
 </project>

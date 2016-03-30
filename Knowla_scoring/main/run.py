@@ -10,18 +10,17 @@ used_problem_feedback = problem_feedback
 used_problem_con_steps = problem_consecutive_steps
 
 
-a = GradingProblem(used_problem,used_problem_answer, used_problem_con_steps)
-b = a.shuffle_problem()
-a.print_problem(b)
+a = GradingProblem(used_problem, used_problem_answer, used_problem_con_steps)
+
+a.print_problem(a.problem)
 a.get_user_input()
-a.get_user_answer_steps()
-a.get_accurate_user_input()
+
 
 a.populate_user_answer_matrix()
 a.to_print_matrix(a.user_answer_matrix)
 
-user_score, total_score , score_percentage = a.get_user_score()
-print(user_score,'out of', total_score, " with a percentage of ", score_percentage,'%')
+user_score, total_score, score_percentage = a.get_user_score()
+print(user_score, 'out of', total_score, " with a percentage of ", score_percentage,'%')
 
 notes = a.get_user_feedback()
 
