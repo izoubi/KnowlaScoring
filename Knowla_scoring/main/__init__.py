@@ -18,7 +18,13 @@ problem_feedback = {'21': 'this is because you chose 2 before 1',
                     '53': 'this is because you chose 5 before 3',
                     '54': 'this is because you chose 5 before 4'}
 
-problem_consecutive_steps = {'a': [3, 1, 1, 4],
-                             'b': [3, 2, 2, 4],
-                             'c': [5, 4, 3, 5],
-                             'd': [2, 1]}
+
+problem_consecutive_steps = {'a': [3, 1, 1, 4, 1.2],
+                             'b': [3, 2, 2, 4, 1.3],
+                             'c': [5, 4, 3, 5, 2],
+                             'd': [2, 1, 0.3]}
+# 'a' if user selects step 3 before 1, and 1 before 4, his/her grade is minimized by 1.2
+# 'b' if user selects step 3 before 2, and 2 before 4, his/her grade is minimized by 1.3
+# 'c' if user selects step 5 before 4, and 3 before 5, his/her grade is minimized by 2
+# 'd' if user selects step 2, his/her grade is minimized by 0.3
+

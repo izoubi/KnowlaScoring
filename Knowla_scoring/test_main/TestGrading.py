@@ -30,7 +30,6 @@ class TestGrading(unittest.TestCase):
     def test_user_answer_steps(self):
         self.assertEqual([1, 2, 3, 4, 5], self.a.user_input)
 
-
     def test_user_answer_matrix(self):
         self.assertEqual([['-', 1, 1, 1, 1],
                           [0, '-', 1, 1, 1],

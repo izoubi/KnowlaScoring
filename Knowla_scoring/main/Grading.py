@@ -1,6 +1,5 @@
 __author__ = 'Ismail'
 
-
 class GradingProblem:
     def __init__(self, a_problem, a_problem_answer, a_problem_cons_steps):
         self.problem = a_problem
@@ -9,10 +8,12 @@ class GradingProblem:
         self.user_input = []  # user answer in numbers
         self.user_answer_matrix = [[0 for x in range(len(self.problem))] for x in range(len(self.problem))]
         self.populate_user_answer_matrix_diagonal()
-        self.user_score, self.total_score, self.score_percentage = 0, 0, 0
+        self.user_score, self.total_score, self.score_percentage = 0.0, 0, 0
         self._where_notes = []
 
     def populate_user_answer_matrix_diagonal(self):
+        # precondition: user_answer_matrix is declared
+        # postcondition: diagonal of user_answer_matrix is populated with '-'
         for i in range(len(self.user_answer_matrix)):
             for j in range(len(self.user_answer_matrix[i])):
                 if i == j:
@@ -22,7 +23,7 @@ class GradingProblem:
 
     def get_user_input(self):
         # precondition: none.
-        # postcondition: user input is collected
+        # postcondition: user input is collected and saved in user_input
         print("enter your answer from 1 to {}".format(len(self.problem)),
               ' in the correct order separated by a comma')
         self.user_input = input()
@@ -31,8 +32,8 @@ class GradingProblem:
         self.user_input = [int(i) for i in self.user_input]  # convert the user input into integers
 
     def populate_user_answer_matrix(self):
-        # precondition: accurate user answer is found, user answer matrix is declared
-        # postcondition:  user answer matrix is populated based on his/her answer
+        # precondition: user_answer_matrix is declared
+        # postcondition:  user_answer_matrix is populated based on his/her answer
         for index_one in range(0, len(self.user_input)-1):
             key1 = self.user_input[index_one]
             for index_two in range(index_one + 1, len(self.user_input)):
@@ -45,46 +46,47 @@ class GradingProblem:
                     self.user_answer_matrix[key1-1][key2-1] = 1  # for notes triangle
 
     def get_user_score(self):
-        # precondition : the user answer matrix is populated, and the correct answer matrix is received.
-        # postcondition : user score and the total score are calculated
+        # precondition : the user_answer_matrix is populated, and the correct_answer_matrix is received.
+        # postcondition : user_score, total_score,  and score_percentage are calculated and returned
         for i in range(len(self.user_answer_matrix)):
             for j in range(i+1, len(self.user_answer_matrix[i])):
-                self.user_score += int(self.user_answer_matrix[i][j] * self.correct_answer_matrix[i][j])  # (returned user score)
+                self.user_score += int(self.user_answer_matrix[i][j] * self.correct_answer_matrix[i][j])
                 # multiply each element in the user answer matrix in grades triangle with the identical element in
                 # the correct answer matrix  grades triangle
-                self.total_score += int(self.correct_answer_matrix[i][j])  # returned total score
+                self.total_score += float(self.correct_answer_matrix[i][j])  # returned total score
 
         print("user answer before deduction if there is any", self.user_score) # this line would be deleted after
         self.check_consecutive_steps()  # check if the user has mistakes in the consecutive steps
-        self.score_percentage = int(self.user_score / self.total_score * 100)
+        self.score_percentage = float(self.user_score / self.total_score * 100)
 
         return self.user_score, self.total_score, self.score_percentage
 
     def check_consecutive_steps(self):
         for a in self.consecutive_steps:
             check = self.consecutive_steps[a]
-            if len(check) == 2:
+            if len(check) == 3:
                 step_a = int(self.user_input.index(check[0]))
                 step_b = int(self.user_input.index(check[1]))
+                penalty = float(check[2])
                 if step_a < step_b:
-                    self.user_score -= 1
+                    self.user_score -= penalty
                 else:
                     pass
 
-            else:
+            elif len(check) == 5:
                 step_a = int(self.user_input.index(check[0]))
                 step_b = int(self.user_input.index(check[1]))
                 step_c = int(self.user_input.index(check[2]))
                 step_d = int(self.user_input.index(check[3]))
-
+                penalty = float(check[4])
                 if step_a < step_b and step_c < step_d:
-                    self.user_score -= 1
+                    self.user_score -= penalty
                 else:
                     pass
 
     def get_user_feedback(self):
-        # precondition : user answer matrix is populated
-        # postcondition : where user had errors (notes) are returned.
+        # precondition : user_answer_matrix is populated
+        # postcondition : wherever user has errors user_answer_matrix, errors are returned.
         for i in range(len(self.user_answer_matrix)):
             for j in range(i):  # loop through the notes triangle only.
                 if self.user_answer_matrix[i][j] == 1:
