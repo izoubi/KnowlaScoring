@@ -1,5 +1,8 @@
 Please run the program from main.run
 
-main.__init__ has the problem with its answer matrix and feedback dictionary,
-the grades could be changed in the grades triangle. for example (total score for problem is 14)
-this could be changed to 10 if the  __init__.problem_answer[0][2] is changed from 5 to 1.
+main.__init__ has a problem, its total grade, its answer matrix, its feedback dictionary, and its consecutive steps dict,
+
+the total grade should be the summation of the positive numbers in the upper triangle
+
+file run.py is a demo to run the problem that its name is problem in main.__init__
+file run2.py is a demo to run the problem that its name is c in main.__init__
