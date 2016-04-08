@@ -5,5 +5,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Term_Project" />
+    <orderEntry type="module" module-name="chapter2" />
+    <orderEntry type="module" module-name="LMath" />
+    <orderEntry type="module" module-name="sales_db" />
   </component>
 </module>

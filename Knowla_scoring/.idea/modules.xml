@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Knowla_scoring.iml" filepath="$PROJECT_DIR$/.idea/Knowla_scoring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../work with prof. Eric/projects/LMath/.idea/LMath.iml" filepath="$PROJECT_DIR$/../../../work with prof. Eric/projects/LMath/.idea/LMath.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../Big Data/Term_Project/.idea/Term_Project.iml" filepath="$PROJECT_DIR$/../../../Big Data/Term_Project/.idea/Term_Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Big Data/Course MongoUni M101P/chapter2/.idea/chapter2.iml" filepath="$PROJECT_DIR$/../../../Big Data/Course MongoUni M101P/chapter2/.idea/chapter2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Big Data/data warehouse with mongoDB/sales_db/.idea/sales_db.iml" filepath="$PROJECT_DIR$/../../../Big Data/data warehouse with mongoDB/sales_db/.idea/sales_db.iml" />
     </modules>
   </component>
 </project>

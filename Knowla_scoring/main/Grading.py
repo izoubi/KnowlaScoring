@@ -1,5 +1,6 @@
 __author__ = 'Ismail'
 
+
 class GradingProblem:
     def __init__(self, a_problem, a_problem_answer, a_problem_cons_steps):
         self.problem = a_problem
@@ -8,7 +9,7 @@ class GradingProblem:
         self.user_input = []  # user answer in numbers
         self.user_answer_matrix = [[0 for x in range(len(self.problem))] for x in range(len(self.problem))]
         self.populate_user_answer_matrix_diagonal()
-        self.user_score, self.total_score, self.score_percentage = 0.0, 0, 0
+        self.user_score = 0.0
         self._where_notes = []
 
     def populate_user_answer_matrix_diagonal(self):
@@ -50,27 +51,30 @@ class GradingProblem:
         # postcondition : user_score, total_score,  and score_percentage are calculated and returned
         for i in range(len(self.user_answer_matrix)):
             for j in range(i+1, len(self.user_answer_matrix[i])):
-                self.user_score += int(self.user_answer_matrix[i][j] * self.correct_answer_matrix[i][j])
+                self.user_score += float(self.user_answer_matrix[i][j] * self.correct_answer_matrix[i][j])
                 # multiply each element in the user answer matrix in grades triangle with the identical element in
                 # the correct answer matrix  grades triangle
-                self.total_score += float(self.correct_answer_matrix[i][j])  # returned total score
 
         print("user answer before deduction if there is any", self.user_score) # this line would be deleted after
         self.check_consecutive_steps()  # check if the user has mistakes in the consecutive steps
-        self.score_percentage = float(self.user_score / self.total_score * 100)
 
-        return self.user_score, self.total_score, self.score_percentage
+        self.user_score = round(self.user_score, 2)
+
+        return self.user_score
 
     def check_consecutive_steps(self):
         for a in self.consecutive_steps:
             check = self.consecutive_steps[a]
             if len(check) == 3:
-                step_a = int(self.user_input.index(check[0]))
-                step_b = int(self.user_input.index(check[1]))
-                penalty = float(check[2])
-                if step_a < step_b:
-                    self.user_score -= penalty
-                else:
+                try:
+                    step_a = int(self.user_input.index(check[0]))
+                    step_b = int(self.user_input.index(check[1]))
+                    penalty = float(check[2])
+                    if step_a < step_b:
+                        self.user_score -= penalty
+                    else:
+                        pass
+                except:
                     pass
 
             elif len(check) == 5:

@@ -13,7 +13,7 @@ class TestGrading(unittest.TestCase):
                                [0,0,'-',1,1],
                                [0,0,0,'-',1],
                                [0,0,0,0,'-']]
-
+        self.problem_total_grade = 10
         self.consecutive_steps = {'a': [3, 1, 1, 4],
                                   'b': [3, 2, 2, 4],
                                   'c': [5, 4, 3, 5]}
@@ -24,7 +24,8 @@ class TestGrading(unittest.TestCase):
         self.a.user_input = [1, 2, 3, 4, 5]
         self.a.populate_user_answer_matrix_diagonal()
         self.a.populate_user_answer_matrix()
-        self.user_score, self.total_score, self.score_percentage = self.a.get_user_score()
+        self.user_score = self.a.get_user_score()
+        self.score_percentage = self.user_score/self.problem_total_grade * 100
         self.notes = self.a.get_user_feedback()
 
     def test_user_answer_steps(self):
@@ -39,7 +40,6 @@ class TestGrading(unittest.TestCase):
 
     def test_user_score(self):
         self.assertEqual(10, self.user_score)
-        self.assertEqual(10, self.total_score)
         self.assertEqual(100, self.score_percentage)
 
     def test_user_feedback(self):

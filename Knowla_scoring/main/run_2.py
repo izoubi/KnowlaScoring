@@ -4,11 +4,10 @@ __author__ = 'Ismail'
 from main.Grading import *
 from main import *
 
-used_problem = problem
-used_problem_answer = problem_answer
-used_problem_feedback = problem_feedback
-used_problem_con_steps = problem_consecutive_steps
-
+used_problem = c
+used_problem_answer = c_answer
+used_problem_feedback = c_feedback
+used_problem_con_steps = c_consecutive_steps
 
 a = GradingProblem(used_problem, used_problem_answer, used_problem_con_steps)
 
@@ -21,13 +20,11 @@ a.to_print_matrix(a.user_answer_matrix)
 
 user_score = a.get_user_score()
 
-total_score = problem_total_grade
+total_score = c_total_grade
 score_percentage = float(user_score / total_score * 100)
 score_percentage = round(score_percentage, 2)
 
 print(user_score, 'out of', total_score, " with a percentage of ", score_percentage,'%')
-
-
 
 notes = a.get_user_feedback()
 
